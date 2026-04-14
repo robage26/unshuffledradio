@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Unshuffled — Stories</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Merriweather:ital,wght@0,400;0,700;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-8L2W9CWHJS"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-8L2W9CWHJS');
+</script>
+<style>
+  :root {
+    --gold:      #f0a500;
+    --gold-light:#ffc84a;
+    --teal:      #3ecfca;
+    --ink:       #0a0a0a;
+    --white:     #ffffff;
+    --off-white: #f8f6f1;
+    --light-gray:#e8e4dc;
+    --body-text: #2c2c2c;
+    --muted:     #6b6560;
+    --nav-h:     70px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--off-white);
+    color: var(--body-text);
+    font-family: 'Nunito', sans-serif;
+    font-weight: 400;
+    line-height: 1.7;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    height: var(--nav-h);
+    background: var(--ink);
+    border-bottom: 2px solid var(--gold);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2.5rem;
+    z-index: 100;
+  }
+
+  .nav-logo img { height: 44px; width: auto; }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: rgba(255,255,255,0.7);
+    text-decoration: none;
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--gold-light); }
+
+  .nav-cta {
+    background: var(--gold) !important;
+    color: var(--ink) !important;
+    padding: 0.45rem 1.1rem !important;
+    border-radius: 30px !important;
+  }
+
+  /* ── PAGE HERO ── */
+  .page-hero {
+    margin-top: var(--nav-h);
+    background: var(--ink);
+    padding: 4rem 4rem 3rem;
+    border-bottom: 3px solid var(--gold);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .page-hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 60% 80% at 80% 50%, rgba(240,165,0,0.07) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .page-hero-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+
+  .page-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--teal);
+    margin-bottom: 0.75rem;
+    display: block;
+  }
+
+  .page-title {
+    font-family: 'Merriweather', serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.2;
+    margin-bottom: 0.75rem;
+  }
+
+  .page-title em {
+    font-style: italic;
+    color: var(--gold-light);
+  }
+
+  .page-sub {
+    font-size: 1rem;
+    color: rgba(255,255,255,0.5);
+    max-width: 520px;
+    line-height: 1.7;
+  }
+
+  /* ── STORIES LIST ── */
+  .stories-section {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 4rem 2rem;
+  }
+
+  /* ── SINGLE STORY ── */
+  .story {
+    background: var(--white);
+    border: 1.5px solid var(--light-gray);
+    border-radius: 16px;
+    overflow: hidden;
+    margin-bottom: 3rem;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.06);
+  }
+
+  .story-img {
+    width: 100%;
+    height: 280px;
+    object-fit: cover;
+    display: block;
+  }
+
+  .story-img-placeholder {
+    width: 100%;
+    height: 180px;
+    background: linear-gradient(135deg, #1a1510, #2a2010);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+  }
+
+  .story-body {
+    padding: 2.5rem;
+  }
+
+  .story-meta {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .story-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    background: var(--gold);
+    color: var(--ink);
+    padding: 0.2rem 0.6rem;
+    border-radius: 3px;
+    font-weight: 700;
+  }
+
+  .story-date {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+
+  .story-title {
+    font-family: 'Merriweather', serif;
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1.3;
+    margin-bottom: 1.25rem;
+  }
+
+  .story-content {
+    font-size: 0.97rem;
+    color: var(--body-text);
+    line-height: 1.85;
+  }
+
+  .story-content p { margin-bottom: 1.1rem; }
+  .story-content p:last-child { margin-bottom: 0; }
+
+  .story-content strong {
+    color: var(--ink);
+    font-weight: 800;
+  }
+
+  .story-content em {
+    font-style: italic;
+    color: #555;
+  }
+
+  .story-divider {
+    width: 50px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--gold), var(--teal));
+    border-radius: 2px;
+    margin: 1.5rem 0;
+  }
+
+  /* ── ADD STORY INSTRUCTIONS ── */
+  .add-story-note {
+    background: var(--ink);
+    border: 1px solid rgba(240,165,0,0.2);
+    border-radius: 12px;
+    padding: 2rem;
+    margin-bottom: 3rem;
+    display: none; /* shown only via ?admin */
+  }
+
+  .add-story-note h3 {
+    font-family: 'Merriweather', serif;
+    font-size: 1rem;
+    color: var(--gold);
+    margin-bottom: 0.75rem;
+  }
+
+  .add-story-note p {
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.5);
+    line-height: 1.7;
+    margin-bottom: 0.5rem;
+  }
+
+  .add-story-note code {
+    background: rgba(240,165,0,0.1);
+    color: var(--gold-light);
+    padding: 0.1rem 0.4rem;
+    border-radius: 3px;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.8rem;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--ink);
+    border-top: 2px solid var(--gold);
+    padding: 2rem 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  footer img { height: 38px; }
+
+  .footer-back {
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: rgba(255,255,255,0.4);
+    text-decoration: none;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+
+  .footer-back:hover { color: var(--gold); }
+
+  .footer-copy {
+    font-size: 0.7rem;
+    color: rgba(255,255,255,0.2);
+    font-family: 'DM Mono', monospace;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    .page-hero { padding: 3rem 1.5rem 2rem; }
+    .stories-section { padding: 2.5rem 1.25rem; }
+    .story-body { padding: 1.5rem; }
+    .story-title { font-size: 1.3rem; }
+    footer { padding: 1.5rem; flex-direction: column; align-items: flex-start; }
+    .nav-links { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">
+    <img src="https://robage26.github.io/unshuffledradio/Unshuffled%20Logo.png" alt="Unshuffled" />
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html#episodes">Episodes</a></li>
+    <li><a href="index.html#about">About</a></li>
+    <li><a href="index.html#suggest">Shape the Show</a></li>
+    <li><a href="https://www.mixcloud.com/unshuffledradio/" target="_blank" class="nav-cta">Listen on Mixcloud</a></li>
+  </ul>
+</nav>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <span class="page-eyebrow">Unshuffled &nbsp;·&nbsp; Written</span>
+    <h1 class="page-title">Stories Behind<br/><em>The Songs</em></h1>
+    <p class="page-sub">The backstories, the moments, the details that didn't make it into the script — but made the script possible.</p>
+  </div>
+</div>
+
+<!-- STORIES -->
+<section class="stories-section">
+
+  <!-- ADMIN NOTE — only shown via ?admin -->
+  <div class="add-story-note" id="add-story-note">
+    <h3>&#9997; How to Add a Story</h3>
+    <p>Copy one of the story blocks below and paste it above the others. Fill in:</p>
+    <p><code>id="story-X"</code> — unique ID for the story (used for direct links)</p>
+    <p><code>.story-tag</code> — category label e.g. "Behind The Song" or "Music History"</p>
+    <p><code>.story-date</code> — date you wrote it</p>
+    <p><code>.story-title</code> — your headline</p>
+    <p><code>.story-content</code> — your full article, wrapped in &lt;p&gt; tags</p>
+    <p><code>&lt;img class="story-img"&gt;</code> — optional image at top of card</p>
+    <p>Then in the main site admin, paste the link as: <code>https://robage26.github.io/unshuffledradio/blog.html#story-1</code></p>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════ -->
+  <!-- STORY 1 — Copy this block to add a new story   -->
+  <!-- ═══════════════════════════════════════════════ -->
+  <article class="story" id="story-1">
+    <!-- Optional: add an image below -->
+    <!-- <img class="story-img" src="YOUR-IMAGE-URL" alt="Story image" /> -->
+    <div class="story-img-placeholder">&#9835;</div>
+    <div class="story-body">
+      <div class="story-meta">
+        <span class="story-tag">Behind The Song</span>
+        <span class="story-date">April 2026</span>
+      </div>
+      <h2 class="story-title">Your Story Headline Goes Here</h2>
+      <div class="story-divider"></div>
+      <div class="story-content">
+        <p>This is where your story goes. Write it the same way you'd write a song intro for the show — find the person, find the moment, find what it cost them.</p>
+        <p>Every paragraph is its own breath. Short sentences land harder. The detail nobody else mentions is always the move.</p>
+        <p>Write to one person reading this at their kitchen table at 11pm. That's your audience. Talk to them, not at them.</p>
+      </div>
+    </div>
+  </article>
+
+  <!-- ═══════════════════════════════════════════════ -->
+  <!-- STORY 2 — Template ready to fill in            -->
+  <!-- ═══════════════════════════════════════════════ -->
+  <article class="story" id="story-2">
+    <div class="story-img-placeholder">&#9835;</div>
+    <div class="story-body">
+      <div class="story-meta">
+        <span class="story-tag">Music History</span>
+        <span class="story-date">April 2026</span>
+      </div>
+      <h2 class="story-title">Your Second Story Headline</h2>
+      <div class="story-divider"></div>
+      <div class="story-content">
+        <p>Your story content here.</p>
+      </div>
+    </div>
+  </article>
+
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <img src="https://robage26.github.io/unshuffledradio/Unshuffled%20Logo.png" alt="Unshuffled" />
+  <a href="index.html" class="footer-back">&#8592; Back to the Show</a>
+  <span class="footer-copy">&copy; 2026 Unshuffled</span>
+</footer>
+
+<script>
+  // Show admin note if ?admin in URL
+  if (window.location.search.indexOf('admin') !== -1) {
+    var note = document.getElementById('add-story-note');
+    if (note) note.style.display = 'block';
+  }
+</script>
+
+</body>
+</html>
