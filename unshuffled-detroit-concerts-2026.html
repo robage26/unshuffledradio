@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Detroit's 2026 Concert Season — Unshuffled Radio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --black: #111010;
+    --white: #F5F2EC;
+    --cream: #EDE9E0;
+    --gold: #C9A84C;
+    --gold-dark: #8B6914;
+    --rust: #B84A1E;
+    --ink: #1C1A17;
+    --muted: #7A756B;
+    --border: rgba(201,168,76,0.25);
+    --font-display: 'Playfair Display', Georgia, serif;
+    --font-body: 'DM Sans', sans-serif;
+    --font-mono: 'DM Mono', monospace;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: var(--font-body);
+    font-weight: 300;
+    line-height: 1.7;
+    min-height: 100vh;
+  }
+
+  /* ── HEADER ── */
+  .site-header {
+    border-bottom: 0.5px solid var(--border);
+    padding: 1.1rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    background: rgba(17,16,16,0.96);
+    backdrop-filter: blur(8px);
+    z-index: 100;
+  }
+
+  .logo {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+    color: var(--gold);
+    text-decoration: none;
+  }
+
+  .logo span {
+    font-style: italic;
+    color: var(--white);
+    font-weight: 400;
+  }
+
+  .header-tag {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  /* ── HERO ── */
+  .hero {
+    padding: 5rem 2rem 4rem;
+    max-width: 820px;
+    margin: 0 auto;
+    border-bottom: 0.5px solid var(--border);
+  }
+
+  .kicker {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.4rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .kicker::before {
+    content: '';
+    display: block;
+    width: 28px;
+    height: 1px;
+    background: var(--gold);
+  }
+
+  .hero h1 {
+    font-family: var(--font-display);
+    font-size: clamp(2.4rem, 6vw, 4rem);
+    font-weight: 900;
+    line-height: 1.05;
+    color: var(--white);
+    margin-bottom: 1.5rem;
+  }
+
+  .hero h1 em {
+    color: var(--gold);
+    font-style: italic;
+  }
+
+  .hero-deck {
+    font-size: 1.05rem;
+    font-weight: 300;
+    color: #C8C4BB;
+    max-width: 620px;
+    line-height: 1.75;
+    margin-bottom: 1.8rem;
+  }
+
+  .byline-row {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    flex-wrap: wrap;
+  }
+
+  .byline-pill {
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .byline-sep { color: var(--border); }
+
+  /* ── ARTICLE BODY ── */
+  .article-body {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 3.5rem 2rem;
+  }
+
+  .lede {
+    font-size: 1.1rem;
+    font-weight: 400;
+    color: #D8D4CB;
+    line-height: 1.8;
+    margin-bottom: 2.5rem;
+    border-left: 2px solid var(--gold);
+    padding-left: 1.4rem;
+  }
+
+  .body-p {
+    font-size: 0.975rem;
+    color: #BDB9B0;
+    line-height: 1.85;
+    margin-bottom: 1.4rem;
+  }
+
+  .body-p strong {
+    color: var(--white);
+    font-weight: 500;
+  }
+
+  /* ── VENUE SECTIONS ── */
+  .venue-block {
+    margin: 3.5rem 0;
+  }
+
+  .venue-header {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    margin-bottom: 1.6rem;
+    padding-bottom: 0.8rem;
+    border-bottom: 0.5px solid var(--border);
+    flex-wrap: wrap;
+  }
+
+  .venue-title {
+    font-family: var(--font-display);
+    font-size: 1.45rem;
+    font-weight: 700;
+    color: var(--white);
+  }
+
+  .venue-location {
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    align-self: center;
+  }
+
+  .venue-intro {
+    font-size: 0.9rem;
+    color: #9C9890;
+    line-height: 1.75;
+    margin-bottom: 1.6rem;
+    font-style: italic;
+  }
+
+  /* ── SHOW CARDS ── */
+  .show-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .show-card {
+    display: grid;
+    grid-template-columns: 58px 1fr auto;
+    align-items: center;
+    gap: 1rem;
+    background: rgba(255,255,255,0.03);
+    border: 0.5px solid rgba(201,168,76,0.15);
+    border-radius: 6px;
+    padding: 12px 16px;
+    transition: background 0.2s, border-color 0.2s;
+  }
+
+  .show-card:hover {
+    background: rgba(201,168,76,0.06);
+    border-color: rgba(201,168,76,0.35);
+  }
+
+  .show-card.featured {
+    border-color: rgba(201,168,76,0.45);
+    background: rgba(201,168,76,0.05);
+  }
+
+  .date-col {
+    text-align: center;
+  }
+
+  .date-month {
+    font-family: var(--font-mono);
+    font-size: 0.58rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gold);
+    display: block;
+  }
+
+  .date-day {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1;
+  }
+
+  .date-tba {
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    color: var(--muted);
+    letter-spacing: 0.06em;
+  }
+
+  .show-main {}
+
+  .show-artist {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--white);
+    margin-bottom: 2px;
+  }
+
+  .show-support {
+    font-size: 0.78rem;
+    color: var(--muted);
+  }
+
+  .show-badge {
+    font-family: var(--font-mono);
+    font-size: 0.58rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 3px 9px;
+    border-radius: 20px;
+    white-space: nowrap;
+  }
+
+  .badge-hot    { background: rgba(184,74,30,0.2);  color: #E8906A; border: 0.5px solid rgba(184,74,30,0.4); }
+  .badge-rock   { background: rgba(130,100,200,0.15); color: #B89FE8; border: 0.5px solid rgba(130,100,200,0.3); }
+  .badge-country{ background: rgba(80,140,60,0.15);  color: #8EC87A; border: 0.5px solid rgba(80,140,60,0.3); }
+  .badge-rnb    { background: rgba(180,60,110,0.15); color: #E890B5; border: 0.5px solid rgba(180,60,110,0.3); }
+  .badge-classic{ background: rgba(201,168,76,0.15); color: var(--gold); border: 0.5px solid rgba(201,168,76,0.3); }
+  .badge-hiphop { background: rgba(40,160,200,0.15); color: #7ADAEF; border: 0.5px solid rgba(40,160,200,0.3); }
+  .badge-added  { background: rgba(201,168,76,0.12); color: var(--gold); border: 0.5px solid var(--border); }
+
+  /* ── PULL QUOTE ── */
+  .pull-quote {
+    margin: 3rem 0;
+    padding: 2rem 2.5rem;
+    border: 0.5px solid var(--border);
+    border-radius: 4px;
+    position: relative;
+    background: rgba(201,168,76,0.04);
+  }
+
+  .pull-quote::before {
+    content: '\201C';
+    font-family: var(--font-display);
+    font-size: 5rem;
+    color: var(--gold);
+    opacity: 0.3;
+    position: absolute;
+    top: -1.2rem;
+    left: 1.5rem;
+    line-height: 1;
+  }
+
+  .pull-quote p {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    font-style: italic;
+    color: var(--white);
+    line-height: 1.55;
+  }
+
+  .pull-quote cite {
+    display: block;
+    margin-top: 0.8rem;
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-style: normal;
+  }
+
+  /* ── UNSHUFFLED CTA ── */
+  .unshuffled-cta {
+    margin: 4rem 0 2rem;
+    padding: 2.5rem;
+    background: rgba(201,168,76,0.07);
+    border: 1px solid rgba(201,168,76,0.3);
+    border-radius: 8px;
+    text-align: center;
+  }
+
+  .cta-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.8rem;
+  }
+
+  .cta-headline {
+    font-family: var(--font-display);
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 0.8rem;
+    line-height: 1.2;
+  }
+
+  .cta-body {
+    font-size: 0.9rem;
+    color: #9C9890;
+    max-width: 480px;
+    margin: 0 auto 1.6rem;
+    line-height: 1.7;
+  }
+
+  .cta-btn {
+    display: inline-block;
+    background: var(--gold);
+    color: var(--black);
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 12px 28px;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+  }
+
+  .cta-btn:hover {
+    background: #D9B860;
+    transform: translateY(-1px);
+  }
+
+  /* ── FOOTER NOTE ── */
+  .article-footer {
+    border-top: 0.5px solid var(--border);
+    padding-top: 1.5rem;
+    margin-top: 1rem;
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.06em;
+    color: var(--muted);
+    line-height: 1.9;
+  }
+
+  /* ── DIVIDER ── */
+  .divider {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin: 2.8rem 0;
+    color: var(--border);
+  }
+
+  .divider::before, .divider::after {
+    content: '';
+    flex: 1;
+    height: 0.5px;
+    background: var(--border);
+  }
+
+  .divider-icon {
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.12em;
+    color: var(--gold);
+    opacity: 0.6;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 560px) {
+    .hero { padding: 3rem 1.25rem 2.5rem; }
+    .article-body { padding: 2.5rem 1.25rem; }
+    .site-header { padding: 1rem 1.25rem; }
+    .show-card { grid-template-columns: 48px 1fr; }
+    .show-badge { display: none; }
+    .pull-quote { padding: 1.5rem; }
+    .unshuffled-cta { padding: 1.8rem 1.25rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="site-header">
+  <a class="logo" href="#">Unshuffled <span>Radio</span></a>
+  <span class="header-tag">Songs in the Order They Mattered</span>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <p class="kicker">Detroit Music Scene &nbsp;·&nbsp; Spring 2026</p>
+  <h1>Detroit's Concert Season<br>Just Got <em>Serious.</em></h1>
+  <p class="hero-deck">
+    Ford Field. Little Caesars Arena. Pine Knob. The Fox. If you live anywhere near Southeast Michigan and you care about live music, 2026 is the year to pay attention. Here's what's worth your time — and your money.
+  </p>
+  <div class="byline-row">
+    <span class="byline-pill">By Unshuffled Radio</span>
+    <span class="byline-sep">·</span>
+    <span class="byline-pill">April 2026</span>
+    <span class="byline-sep">·</span>
+    <span class="byline-pill">5 min read</span>
+  </div>
+</section>
+
+<!-- ARTICLE BODY -->
+<div class="article-body">
+
+  <p class="lede">
+    Some summers you get a handful of decent shows scattered across the calendar. Then there are summers like this one — where you look at the lineup across four major Detroit venues and realize you need a spreadsheet just to keep track of it all.
+  </p>
+
+  <p class="body-p">
+    Detroit has always been a music city. Motown didn't happen by accident. The bones of this town are built on rhythm, soul, and the kind of crowds that show up loud. And in 2026, the major touring world seems to have finally remembered that. From Bruno Mars going <strong>two — make that three</strong> nights at Ford Field, to Mötley Crüe dragging the Carnival of Sins back out of retirement at Pine Knob, the Motor City calendar is stacked.
+  </p>
+
+  <p class="body-p">
+    On <em>Unshuffled</em>, we talk a lot about songs in context — what they mean, when they came out, why they hit the way they did. Live music is where that context becomes something you feel in your chest. This guide is for the people who want to feel something this summer.
+  </p>
+
+  <div class="divider"><span class="divider-icon">◆ ◆ ◆</span></div>
+
+  <!-- FORD FIELD -->
+  <div class="venue-block">
+    <div class="venue-header">
+      <span class="venue-title">Ford Field</span>
+      <span class="venue-location">Downtown Detroit &nbsp;·&nbsp; Capacity ~65,000</span>
+    </div>
+    <p class="venue-intro">The big room. Home of the Lions and, for a few nights a year, some of the biggest tours on the planet. When Ford Field does concerts, it does stadium-scale spectacle.</p>
+
+    <div class="show-grid">
+
+      <div class="show-card featured">
+        <div class="date-col">
+          <span class="date-month">May</span>
+          <span class="date-day">9</span>
+        </div>
+        <div class="show-main">
+          <p class="show-artist">Bruno Mars — The Romantic Tour</p>
+          <p class="show-support">With Anderson .Paak as DJ Pee .Wee &amp; Leon Thomas</p>
+        </div>
+        <span class="show-badge badge-hot">Can't Miss</span>
+      </div>
+
+      <div class="show-card featured">
+        <div class="date-col">
+          <span class="date-month">May</span>
+          <span class="date-day">10</span>
+        </div>
+        <div class="show-main">
+          <p class="show-artist">Bruno Mars — Night Two</p>
+          <p class="show-support">Added due to demand &nbsp;·&nbsp; Same full lineup</p>
+        </div>
+        <span class="show-badge badge-added">Added show</span>
+      </div>
+
+      <div class="show-card">
+        <div class="date-col">
+          <span class="date-month">Jun</span>
+          <span class="date-day">4</span>
+        </div>
+        <div class="show-main">
+          <p class="show-artist">Chris Stapleton — All-American Road Show</p>
+          <p class="show-support">7:30 PM</p>
+        </div>
+        <span class="show-badge badge-country">Country</span>
+      </div>
+
+      <div class="show-card">
+        <div class="date-col">
+          <span class="date-month">Aug</span>
+          <span class="date-day">6</span>
+        </div>
+        <div class="show-main">
+          <p class="show-artist">Foo Fighters</p>
+          <p class="show-support">Stadium headline show</p>
+        </div>
+        <span class="show-badge badge-rock">Rock</span>
+      </div>
+
+      <div class="show-card">
+        <div class="date-col">
+          <span class="date-month">Aug</span>
+          <span class="date-day">16</span>
+        </div>
+        <div class="show-main">
+          <p class="show-artist">Bruno Mars — Third Detroit date</p>
+          <p class="show-support">8:00 PM &nbsp;·&nbsp; The Romantic Tour continues</p>
+        </div>
+        <span class="show-badge badge-rnb">R&amp;B / Pop</span>
+      </div>
+
+    </div>
+
+    <div class="pull-quote">
+      <p>His first full headline stadium tour in nearly a decade, and Detroit gets three stops. That's not a coincidence. That's a love letter to this city.</p>
+      <cite>— on Bruno Mars at Ford Field</cite>
+    </div>
+
+    <p class="body-p">
+      Mars' <em>The Romantic</em> — his fourth solo album, out this past February — gave him the runway for the kind of tour he'd never actually done before: a full stadium run. The May 9 date sold so fast that May 10 was added within days. Then August 16 landed. Three nights. At Ford Field. That doesn't happen unless Detroit showed up, and Detroit showed up.
+    </p>
+    <p class="body-p">
+      Chris Stapleton in June is the country show of the year. No theatrics, no LED walls — just a voice that could rattle the rafters at Ford Field without a microphone. And the Foo Fighters in August? Dave Grohl rebuilt this band after losing Taylor Hawkins. A stadium show is how you remind everyone what this band is made of.
+    </p>
+  </div>
+
+  <div class="divider"><span class="divider-icon">◆ ◆ ◆</span></div>
+
+  <!-- LCA -->
+  <div class="venue-block">
+    <div class="venue-header">
+      <span class="venue-title">Little Caesars Arena</span>
+      <span class="venue-location">Downtown Detroit &nbsp;·&nbsp; Capacity ~20,000</span>
+    </div>
+    <p class="venue-intro">The workhorse. LCA turns over genres like a radio DJ flipping formats — country one week, hip-hop the next, then a classic rock legend walks in. One of those rare arenas where there genuinely isn't a bad seat.</p>
+
+    <div class="show-grid">
+
+      <div class="show-card">
+        <div class="date-col">
+          <span class="date-month">Jul</span>
+          <span class="date-day">8</span>
+        </div>
+        <div class="show-main">
+          <p class="show-artist">Gorillaz — The Mountain Tour</p>
+          <p class="show-support">7:30 PM</p>
+        </div>
+        <span class="show-badge badge-rock">Alternative</span>
+      </div>
+
+      <div class="show-card">
+        <div class="date-col">
+          <span class="date-month">Aug</span>
+          <span class="date-day">8</span>
+        </div>
+        <div class="show-main">
+          <p class="show-artist">J. Cole — The Fall-Off Tour</p>
+          <p class="show-support">6:00 PM</p>
+        </div>
+        <span class="show-badge badge-hiphop">Hip-Hop</span>
+      </div>
+
+      <div class="show-card featured">
+        <div class="date-col">
+          <div class="date-tba">TBA</div>
+        </div>
+        <div class="show-main">
+          <p class="show-artist">Lionel Richie &amp; Earth, Wind &amp; Fire</p>
+          <p class="show-support">Sing a Song All Night Long Tour</p>
+        </div>
+        <span class="show-badge badge-rnb">R&amp;B / Soul</span>
+      </div>
+
+      <div class="show-card">
+        <div class="date-col">
+          <div class="date-tba">TBA</div>
+        </div>
+        <div class="show-main">
+          <p class="show-artist">Eric Clapton</p>
+          <p class="show-support">LCA confirmed</p>
+        </div>
+        <span class="show-badge badge-classic">Blues / Rock</span>
+      </div>
+
+      <div class="show-card">
+        <div class="date-col">
+          <span class="date-month">Oct</span>
+          <span class="date-day">7</span>
+        </div>
+        <div class="show-main">
+          <p class="show-artist">Don Toliver — Octane Tour</p>
+          <p class="show-support">7:00 PM</p>
+        </div>
+        <span class="show-badge badge-hiphop">Hip-Hop</span>
+      </div>
+
+      <div class="show-card">
+        <div class="date-col">
+          <span class="date-month">Nov</span>
+          <span class="date-day">19</span>
+        </div>
+        <div class="show-main">
+          <p class="show-artist">A$AP Rocky — Don't Be Dumb World Tour</p>
+          <p class="show-support">7:00 PM</p>
+        </div>
+        <span class="show-badge badge-hiphop">Hip-Hop</span>
+      </div>
+
+    </div>
+
+    <p class="body-p" style="margin-top: 1.4rem;">
+      The Lionel Richie and Earth, Wind &amp; Fire pairing is quietly one of the most exciting things on this whole list. Two catalogs that belong in any conversation about American music — put them together in one night and you've got something that'll go three hours and feel like twenty minutes. <strong>That's what live music is supposed to do.</strong>
+    </p>
+    <p class="body-p">
+      Gorillaz always brings something visually interesting, and J. Cole's <em>The Fall-Off</em> has been one of the more anticipated tours in hip-hop this year. Eric Clapton at LCA is the kind of understated booking that fills up quietly, then sells out completely.
+    </p>
+  </div>
+
+  <div class="divider"><span class="divider-icon">◆ ◆ ◆</span></div>
+
+  <!-- PINE KNOB -->
+  <div class="venue-block">
+    <div class="venue-header">
+      <span class="venue-title">Pine Knob Music Theatre</span>
+      <span class="venue-location">Clarkston, MI &nbsp;·&nbsp; Capacity ~15,274</span>
+    </div>
+    <p class="venue-intro">You can call it The Knob. You can call it The Hill. You can call it DTE if you're feeling nostalgic. What you can't call it is anything other than one of the best outdoor amphitheaters in the country. Season opens in May. Bring a blanket for the lawn.</p>
+
+    <div class="show-grid">
+
+      <div class="show-card">
+        <div class="date-col">
+          <span class="date-month">May</span>
+          <span class="date-day">23</span>
+        </div>
+        <div class="show-main">
+          <p class="show-artist">Kid Cudi — The Rebel Ragers Tour</p>
+          <p class="show-support">6:30 PM &nbsp;·&nbsp; Season opener energy</p>
+        </div>
+        <span class="show-badge badge-hiphop">Hip-Hop</span>
+      </div>
+
+      <div class="show-card">
+        <div class="date-col">
+          <span class="date-month">Jun</span>
+          <span class="date-day">18</span>
+        </div>
+        <div class="show-main">
+          <p class="show-artist">Santana &amp; The Doobie Brothers — Oneness Tour</p>
+          <p class="show-support">7:00 PM</p>
+        </div>
+        <span class="show-badge badge-classic">Classic Rock</span>
+      </div>
+
+      <div class="show-card">
+        <div class="date-col">
+          <span class="date-month">Jun</span>
+          <span class="date-day">21</span>
+        </div>
+        <div class="show-main">
+          <p class="show-artist">Godsmack — The Rise of Rock World Tour</p>
+          <p class="show-support">7:00 PM</p>
+        </div>
+        <span class="show-badge badge-rock">Hard Rock</span>
+      </div>
+
+      <div class="show-card featured">
+        <div class="date-col">
+          <span class="date-month">Jul</span>
+          <span class="date-day">20</span>
+        </div>
+        <div class="show-main">
+          <p class="show-artist">Mötley Crüe — Return of the Carnival of Sins</p>
+          <p class="show-support">6:30 PM</p>
+        </div>
+        <span class="show-badge badge-hot">Can't Miss</span>
+      </div>
+
+      <div class="show-card">
+        <div class="date-col">
+          <span class="date-month">Jul</span>
+          <span class="date-day">25</span>
+        </div>
+        <div class="show-main">
+          <p class="show-artist">Jack White Live 2026</p>
+          <p class="show-support">7:00 PM</p>
+        </div>
+        <span class="show-badge badge-rock">Rock</span>
+      </div>
+
+      <div class="show-card">
+        <div class="date-col">
+          <span class="date-month">Aug</span>
+          <span class="date-day">21</span>
+        </div>
+        <div class="show-main">
+          <p class="show-artist">Deep Purple with Kansas</p>
+          <p class="show-support">6:15 PM</p>
+        </div>
+        <span class="show-badge badge-classic">Classic Rock</span>
+      </div>
+
+      <div class="show-card">
+        <div class="date-col">
+          <span class="date-month">Aug</span>
+          <span class="date-day">22</span>
+        </div>
+        <div class="show-main">
+          <p class="show-artist">Outlaw Music Festival</p>
+          <p class="show-support">Willie Nelson, Sheryl Crow, The Avett Brothers &amp; more &nbsp;·&nbsp; 3:20 PM</p>
+        </div>
+        <span class="show-badge badge-country">Americana</span>
+      </div>
+
+      <div class="show-card">
+        <div class="date-col">
+          <span class="date-month">Jul</span>
+          <span class="date-day">18</span>
+        </div>
+        <div class="show-main">
+          <p class="show-artist">Southern Hospitality Tour</p>
+          <p class="show-support">The Black Crowes &amp; Whiskey Myers &nbsp;·&nbsp; 6:30 PM</p>
+        </div>
+        <span class="show-badge badge-rock">Rock</span>
+      </div>
+
+    </div>
+
+    <div class="pull-quote">
+      <p>Mötley Crüe dragging the Carnival of Sins back to Pine Knob on a July night. That lawn is going to be absolutely unhinged in the best possible way.</p>
+      <cite>— on the Pine Knob summer lineup</cite>
+    </div>
+
+    <p class="body-p">
+      Santana and the Doobie Brothers on June 18 is the night to pick if you're only doing one Pine Knob show. Two catalogs that absolutely hold up, warm Michigan evening, the lawn open behind you. That's the formula. That's the template.
+    </p>
+    <p class="body-p">
+      The Outlaw Music Festival on August 22 is genuinely the best deal on this entire list — Willie Nelson alone is a reason to go, but you're also getting Sheryl Crow and the Avett Brothers in one afternoon. Deep Purple and Kansas the night before is basically the world's greatest classic rock radio block brought to life.
+    </p>
+    <p class="body-p">
+      And Jack White at Pine Knob is one of Detroit's own coming home. He doesn't do big, polished arena spectacle. He does intensity. The Knob is exactly the right room for him.
+    </p>
+  </div>
+
+  <div class="divider"><span class="divider-icon">◆ ◆ ◆</span></div>
+
+  <!-- FOX THEATRE -->
+  <div class="venue-block">
+    <div class="venue-header">
+      <span class="venue-title">Fox Theatre</span>
+      <span class="venue-location">Downtown Detroit &nbsp;·&nbsp; Intimate &amp; Historic</span>
+    </div>
+    <p class="venue-intro">The crown jewel. Restored, stunning, and one of those rooms where the building itself is part of the show. Smaller scale than the arenas — which means closer, louder, and every seat feels like the good seat.</p>
+
+    <div class="show-grid">
+
+      <div class="show-card">
+        <div class="date-col">
+          <span class="date-month">May</span>
+          <span class="date-day">16</span>
+        </div>
+        <div class="show-main">
+          <p class="show-artist">Brit Floyd</p>
+          <p class="show-support">8:00 PM &nbsp;·&nbsp; Pink Floyd tribute</p>
+        </div>
+        <span class="show-badge badge-classic">Classic Rock</span>
+      </div>
+
+      <div class="show-card featured">
+        <div class="date-col">
+          <div class="date-tba">TBA</div>
+        </div>
+        <div class="show-main">
+          <p class="show-artist">The R&amp;B Lovers Tour</p>
+          <p class="show-support">Keith Sweat, Joe, Dru Hill &amp; Ginuwine</p>
+        </div>
+        <span class="show-badge badge-rnb">R&amp;B</span>
+      </div>
+
+      <div class="show-card">
+        <div class="date-col">
+          <div class="date-tba">TBA</div>
+        </div>
+        <div class="show-main">
+          <p class="show-artist">Charlie Puth — Whatever's Clever! World Tour</p>
+          <p class="show-support">With Daniel Seavey &amp; Ally Salort</p>
+        </div>
+        <span class="show-badge badge-rnb">Pop</span>
+      </div>
+
+      <div class="show-card">
+        <div class="date-col">
+          <div class="date-tba">TBA</div>
+        </div>
+        <div class="show-main">
+          <p class="show-artist">Ray LaMontagne</p>
+          <p class="show-support">20th anniversary of <em>Trouble</em></p>
+        </div>
+        <span class="show-badge badge-classic">Folk</span>
+      </div>
+
+    </div>
+
+    <p class="body-p" style="margin-top: 1.4rem;">
+      The R&amp;B Lovers Tour at the Fox is the one where you look at the lineup — Keith Sweat, Joe, Dru Hill, Ginuwine — and do the math. That's four distinct eras of late-night slow jams in one show. Late 80s through early 2000s. Detroit is going to lose its mind.
+    </p>
+    <p class="body-p">
+      Ray LaMontagne's <em>Trouble</em> at 20 is the quietest, most emotionally devastating item on this entire list. That album holds up. It always held up. Hearing it live at the Fox — that's a night you'll remember.
+    </p>
+  </div>
+
+  <div class="divider"><span class="divider-icon">◆ ◆ ◆</span></div>
+
+  <!-- FINAL TAKE -->
+  <p class="body-p">
+    If you're the kind of person who tracks music by era, by genre, by the stories behind the songs — <strong>this is your summer.</strong> The Motor City has always deserved lineups like this. In 2026, it's finally getting them across the board.
+  </p>
+  <p class="body-p">
+    Tickets for most shows are available through Ticketmaster and 313presents.com. Pine Knob's box office opens for the season on April 27. Some Fox dates are still TBD — worth checking back regularly.
+  </p>
+
+  <!-- UNSHUFFLED CTA -->
+  <div class="unshuffled-cta">
+    <p class="cta-eyebrow">Now Streaming Weekly on Mixcloud</p>
+    <h2 class="cta-headline">Want the backstory on the songs behind these artists?</h2>
+    <p class="cta-body">
+      Every Monday, <em>Unshuffled</em> goes deep on the music that shaped the artists hitting these stages. New episodes every week — audio only, no filler, no algorithm. Just the songs in the order they mattered.
+    </p>
+    <a class="cta-btn" href="https://www.mixcloud.com/unshuffledradio" target="_blank" rel="noopener">Listen on Mixcloud ↗</a>
+  </div>
+
+  <div class="article-footer">
+    <p>All show dates current as of April 2026 and subject to change. Verify with 313presents.com or individual venue box offices before purchasing. Ticket prices and availability vary by show. Unshuffled Radio is an independent production — we have no affiliation with any promoter or ticket seller.</p>
+  </div>
+
+</div>
+
+</body>
+</html>
